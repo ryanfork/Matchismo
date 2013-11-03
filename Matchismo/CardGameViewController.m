@@ -7,14 +7,26 @@
 //
 
 #import "CardGameViewController.h"
+#import "PlayingCardDeck.h"
+#import "Card.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
+@property (strong, nonatomic) PlayingCardDeck *playingCardDeck;
 
 @end
 
 @implementation CardGameViewController
+
+- (PlayingCardDeck *)playingCardDeck
+{
+    if (!_playingCardDeck) {
+        _playingCardDeck = [[PlayingCardDeck alloc] init];
+    }
+    
+    return _playingCardDeck;
+}
 
 - (void)setFlipCount:(int)flipCount {
     _flipCount = flipCount;
@@ -23,17 +35,19 @@
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
-    if ([sender.currentTitle length]) {
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardback"]
-                          forState:UIControlStateNormal];
-        [sender setTitle:@"" forState:UIControlStateNormal];
+    if (!sender.isSelected) {
+        NSLog(@"Draw card");
+        Card *card = [self.playingCardDeck drawRandomCard];
+        
+        NSLog(@"Card: %@", card.contents);
+        [sender setTitle:card.contents forState:UIControlStateSelected];
+        [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"] forState:UIControlStateNormal];
+        self.flipCount++;
     } else {
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
-                          forState:UIControlStateNormal];
-        [sender setTitle:@"A♣️" forState:UIControlStateNormal];
+        [sender setBackgroundImage:[UIImage imageNamed:@"cardback"] forState:UIControlStateNormal];
     }
     
-    self.flipCount++;
+    sender.selected = !sender.isSelected;
 }
 
 @end

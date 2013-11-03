@@ -19,7 +19,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1g-NR-bIo">
                                 <rect key="frame" x="99" y="184" width="128" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="A♣️" backgroundImage="cardfront">
+                                <state key="normal" backgroundImage="cardback">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -46,7 +46,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cardfront" width="700" height="1000"/>
+        <image name="cardback" width="128" height="99"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
